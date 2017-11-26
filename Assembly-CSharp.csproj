@@ -53,6 +53,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\DestroyOnContact.cs" />
      <Compile Include="Assets\Scripts\firemanController.cs" />
+     <Compile Include="Assets\Scripts\Restart.cs" />
+     <Compile Include="Assets\Scripts\Score.cs" />
      <Compile Include="Assets\Scripts\ScriptGameController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

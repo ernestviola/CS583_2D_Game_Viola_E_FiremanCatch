@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class ScriptGameController : MonoBehaviour {
@@ -9,6 +10,9 @@ public class ScriptGameController : MonoBehaviour {
 	public Rigidbody2D rb2D;
 	public float timeLeft;
 	private float maxWidth;
+	public Text timerText;
+	public GameObject gameOverText;
+	public GameObject restartButton;
 
 	// Use this for initialization
 	void Start () {
@@ -23,8 +27,15 @@ public class ScriptGameController : MonoBehaviour {
 		StartCoroutine (Spawn ());
 	}
 
+	public void StartGame () {
+
+	}
+
 	void FixedUpdate () {
 		timeLeft -= Time.deltaTime;
+		if (timeLeft < 0)
+			timeLeft = 0;
+		UpdateText ();
 	}
 
 	IEnumerator Spawn () {
@@ -37,7 +48,14 @@ public class ScriptGameController : MonoBehaviour {
             );
 			Quaternion spawnRotation = Quaternion.identity;
 			Instantiate (civilian, spawnPosition, spawnRotation);
-			yield return new WaitForSeconds (Random.Range (1.0f,2.0f));
+			yield return new WaitForSeconds (Random.Range (.5f,.8f));
 		}
+		yield return new WaitForSeconds (2.0f);
+		gameOverText.SetActive (true);
+		restartButton.SetActive (true);
+	}
+
+	void UpdateText () {
+		timerText.text = "Time Left: " + Mathf.RoundToInt(timeLeft);
 	}
 }
