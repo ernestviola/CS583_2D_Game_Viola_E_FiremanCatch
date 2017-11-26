@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/firemanController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Restart.cs">
     <Files>
-      <File FileName="Assets/Scripts/firemanController.cs" Line="5" Column="1" />
+      <File FileName="Assets/Scripts/Restart.cs" Line="10" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

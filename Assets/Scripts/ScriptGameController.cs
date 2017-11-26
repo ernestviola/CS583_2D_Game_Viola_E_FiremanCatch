@@ -9,37 +9,48 @@ public class ScriptGameController : MonoBehaviour {
 
 	public Rigidbody2D rb2D;
 	public float timeLeft;
-	private float maxWidth;
 	public Text timerText;
 	public GameObject gameOverText;
 	public GameObject restartButton;
+	public GameObject splashScreen;
+	public GameObject startButton;
+	public firemanController firemanController;
+
+	private float maxWidth;
+	private bool playing;
 
 	// Use this for initialization
 	void Start () {
 		if (cam == null) {
 			cam = Camera.main;
 		}
+		playing = false;
 		rb2D = GetComponent<Rigidbody2D>();
 		Vector3 upperCorner = new Vector3 (Screen.width, Screen.height, 0.0f);
 		Vector3 targetWidth = cam.ScreenToWorldPoint (upperCorner);
 		float civilianWidth = civilian.GetComponent<Renderer>().bounds.extents.x;
 		maxWidth = targetWidth.x - civilianWidth;
-		StartCoroutine (Spawn ());
 	}
 
 	public void StartGame () {
-
+		firemanController.ToggleControl (true);
+		splashScreen.SetActive (false);
+		startButton.SetActive (false);
+		StartCoroutine (Spawn ());
 	}
 
 	void FixedUpdate () {
-		timeLeft -= Time.deltaTime;
-		if (timeLeft < 0)
-			timeLeft = 0;
-		UpdateText ();
+		if (playing) {
+			timeLeft -= Time.deltaTime;
+			if (timeLeft < 0)
+				timeLeft = 0;
+			UpdateText ();
+		}
 	}
 
 	IEnumerator Spawn () {
 		yield return new WaitForSeconds (2.0f);
+		playing = true;
 		while (timeLeft > 0) {
 			Vector3 spawnPosition = new Vector3 (
                 Random.Range (-maxWidth, maxWidth), 
