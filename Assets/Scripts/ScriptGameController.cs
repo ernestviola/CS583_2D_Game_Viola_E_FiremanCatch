@@ -14,7 +14,11 @@ public class ScriptGameController : MonoBehaviour {
 	public GameObject restartButton;
 	public GameObject splashScreen;
 	public GameObject startButton;
+	public GameObject instructions;
 	public firemanController firemanController;
+	public GameObject backButton;
+	public GameObject credits;
+	public GameObject creditButton;
 
 	private float maxWidth;
 	private bool playing;
@@ -36,7 +40,26 @@ public class ScriptGameController : MonoBehaviour {
 		firemanController.ToggleControl (true);
 		splashScreen.SetActive (false);
 		startButton.SetActive (false);
+		instructions.SetActive (false);
+		creditButton.SetActive (false);
+
 		StartCoroutine (Spawn ());
+	}
+
+	public void ShowCredits () {
+		startButton.SetActive (false);
+		creditButton.SetActive (false);
+		instructions.SetActive (false);
+		backButton.SetActive (true);
+		credits.SetActive (true);
+	}
+
+	public void ShowStartScreen () {
+		backButton.SetActive (false);
+		credits.SetActive (false);
+		startButton.SetActive (true);
+		creditButton.SetActive (true);
+		instructions.SetActive (true);
 	}
 
 	void FixedUpdate () {
